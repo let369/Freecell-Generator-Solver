@@ -18,7 +18,7 @@
 #include <string.h>
 #include <time.h>
 
-#define N 13
+#define N 5
 
 #define HEARTS 0
 #define DIAMONDS 1
@@ -40,7 +40,7 @@ void initialize_deck()
 		for(j=0;j<N;j++)
 		{
 			deck[i*N+j].suit=i;
-			deck[i*N+j].value=j;
+			deck[i*N+j].value=j+1;
 		}
 }
 
@@ -109,9 +109,9 @@ void write_to_file(int id, char *filename)
 
 	fout=fopen(s,"w");
 	
-	for(i=0;i<4*N;i++)
+	for(i=1;i<=4*N;i++)
 	{
-		switch(deck[i].suit)
+		switch(deck[i-1].suit)
 		{
 		case HEARTS: fprintf(fout,"H");
 			break;
@@ -123,25 +123,13 @@ void write_to_file(int id, char *filename)
 			break;
 		}
 
-		fprintf(fout,"%d",deck[i].value);
+		fprintf(fout,"%d",deck[i-1].value);
 
-		if ( (N%2) == 0)
-		{
-			if (i == N/2-1 || i==N-1 || i==3*N/2-1 || i==2*N-1
-				|| i==5*N/2-1 || i==3*N-1 || i==7*N/2-1 || i==4*N-1){
-				fprintf(fout, "\n");
-			}
-			else{
-				fprintf(fout, " ");
-			}
+		if (i%8==0){
+			fprintf(fout,"\n");
 		}
-		else
-		{
-			if (i == N/2 || i==N || i==3*N/2+1 || i==2*N+1
-				|| i==5*N/2+1 || i==3*N || i==7*N/2 || i==4*N)
-				fprintf(fout, "\n");
-			else
-				fprintf(fout, " ");
+		else{
+			fprintf(fout," ");
 		}
 	}
 	fclose(fout);
