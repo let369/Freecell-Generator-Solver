@@ -9,7 +9,7 @@
 // Cardboards are read from an input file, while solution is written
 // to an output file.
 //
-// Author: Tzafos Panagiotis, May 2015
+// Author: Karamoulas Eleftherios, May 2015
 //
 // --------------------------------------------------------------
 
